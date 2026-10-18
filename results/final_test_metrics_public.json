@@ -1,0 +1,83 @@
+{
+  "study": "Spinal disorder classification from X-rays",
+  "task": "three-class image classification",
+  "status": "single locked held-out evaluation complete",
+  "classes": [
+    "Normal",
+    "Scoliosis",
+    "Spondylolisthesis"
+  ],
+  "dataset_counts": {
+    "total": 338,
+    "train": 235,
+    "validation": 52,
+    "heldout_test": 51
+  },
+  "model": {
+    "candidate": "C08",
+    "seed": 456,
+    "checkpoint_selection": "best validation accuracy, lower validation loss on ties",
+    "selected_epoch": 11,
+    "preprocessing": {
+      "grayscale": true,
+      "clahe_clip_limit": 3.0,
+      "clahe_tile_grid": [
+        8,
+        8
+      ],
+      "image_size": [
+        128,
+        128
+      ]
+    }
+  },
+  "validation": {
+    "n": 52,
+    "correct": 50,
+    "accuracy": 0.9615384615384616,
+    "macro_f1": 0.95283,
+    "balanced_accuracy": 0.9603174603174603,
+    "epoch_validation_loss": 0.4027
+  },
+  "heldout_test": {
+    "n": 51,
+    "correct": 47,
+    "accuracy": 0.9215686274509803,
+    "macro_f1": 0.9152,
+    "balanced_accuracy": 0.9155844155844156,
+    "cross_entropy": 0.2189,
+    "accuracy_wilson_95ci": [
+      0.815,
+      0.9691
+    ],
+    "confusion_matrix_rows_actual_cols_predicted": [
+      [
+        9,
+        2,
+        0
+      ],
+      [
+        1,
+        26,
+        1
+      ],
+      [
+        0,
+        0,
+        12
+      ]
+    ],
+    "per_class_recall": {
+      "Normal": 0.8181818181818182,
+      "Scoliosis": 0.9285714285714286,
+      "Spondylolisthesis": 1.0
+    }
+  },
+  "limitations": [
+    "Patient independence not established",
+    "Small image-level test set",
+    "Extensive model/seed selection on validation partition",
+    "Not clinically validated"
+  ],
+  "source": "Aggregates transcribed from completed locked Stage 4 Colab output; row-level artifacts remain private."
+}

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spinal-disorder-classification"
+version = "1.0.0"
+description = "Research-only spinal X-ray classification reproducibility package"
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+    "numpy>=1.24,<3",
+    "Pillow>=10,<13",
+    "opencv-python-headless>=4.8,<5.1",
+]
+
+[project.optional-dependencies]
+inference = ["tensorflow>=2.16,<2.23"]
+dev = ["pytest>=8", "nbformat>=5.9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
