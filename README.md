@@ -133,3 +133,5 @@ Detailed steps, security requirements and commands:
 **Publication status:** Source code prepared for deployment. A live URL must be
 added after a successful provider deployment; this repository alone does not
 create or host a public site. The application is a non-diagnostic educational demo.
+
+Website: [https://alexgkassis-cell-spinal-disorder-cl.vercel.app/](url)
