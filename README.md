@@ -119,26 +119,13 @@ This prints experimental class scores and a **non-diagnostic** label. The CLI do
 
 ## Historical notebook caveat
 
-`00_legacy_original_research_ARCHIVE.ipynb` is **archived for provenance, not for rigorous evaluation**. That notebook reused its test partition to tune classical models and as CNN validation, so historical ~92.65% results should **not** be conflated with the locked 2026 final test score. The original code is retained, but outputs are stripped for privacy and to avoid confusion.
+`00_legacy_original_research_ARCHIVE.ipynb` is **archived for provenance, not for rigorous evaluation**. That notebook reused its test partition to tune classical models and as CNN validation, so historical ~92.65% results should **not** be conflated with the current 2026 final test score. The original code is retained, but outputs are stripped for privacy and to avoid confusion.
 
 ## Publishing and responsible reuse
 
-Review every file before making this repository public. `.gitignore` excludes raw X-rays, checkpoint formats, private manifests, local logs, and other artifacts, but **Git ignore rules cannot protect files explicitly force-added**. Do not commit patient data, protected health information, Google Drive exports, private IDs or model weights. Licensing and rights to images/weights have not been established; no dataset or model-weights license is granted here.
+`.gitignore` excludes raw X-rays, checkpoint formats, private manifests, local logs, and other artifacts, but **Git ignore rules cannot protect files explicitly force-added**. Do not commit patient data, protected health information, Google Drive exports, private IDs or model weights. Licensing and rights to images/weights have not been established; no dataset or model-weights license is granted here.
 
 See [`docs/PRIVACY_CHECKLIST.md`](docs/PRIVACY_CHECKLIST.md). Source-code licensing can be chosen by the repository owner before public release.
-
-
-## Stage 7 — Public website deployment
-
-The **SpineLab** Next.js 16 / React 19 frontend is under [`web/`](web/).
-The FastAPI / TensorFlow C08 inference service is under [`api/`](api/).
-
-Deploy the frontend on **Vercel** with **Root Directory = `web`**.
-Deploy the Python API on **Railway** using the root `Dockerfile`, with
-its original locked `.keras` checkpoint stored on a **private Railway volume**.
-The model and patient images must **never** be committed to GitHub or baked into
-public container images. The Next.js server-side route forwards image bytes with
-a private bearer token; only the Next.js host receives public browser uploads.
 
 Detailed steps, security requirements and commands:
 [**Stage 7 deployment guide**](docs/STAGE7_DEPLOY.md).
