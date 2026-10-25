@@ -1,0 +1,77 @@
+# local Python, caches and test outputs
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+.coverage
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# ALL patient imagery; never publish
+*.jpg
+*.jpeg
+*.png
+*.dcm
+*.dicom
+*.tif
+*.tiff
+*.bmp
+*.nii
+*.nii.gz
+
+# checkpoints and training artifacts
+*.keras
+*.h5
+*.hdf5
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.tfrecord
+*.tfrecords
+
+# protected patient manifests and per-image predictions
+*PRIVATE*
+*private*
+*patient*
+*manifest*.csv
+*per_image*
+*per-image*
+
+# generated data, weights, analysis directories (keep placeholder READMEs)
+data/*
+!data/README.md
+models/*
+!models/README.md
+artifacts/
+experiments/
+logs/
+outputs/
+MyDrive/
+
+# local credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+service-account*.json
+
+# Next.js development outputs
+node_modules/
+.next/
+*.tsbuildinfo
+.vercel/
+.turbo/
+npm-debug.log*
+.DS_Store

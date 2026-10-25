@@ -53,7 +53,26 @@ See [`docs/DATASET_AND_ETHICS.md`](docs/DATASET_AND_ETHICS.md) and [`docs/METHOD
 | 3F | Multi-seed stability check of C08, C01 and grayscale | Complete |
 | 4 | Lock C08/seed 456 and evaluate 51-image test once | Complete |
 | 5 | Archive research source, code, docs and aggregate metrics | This repository |
-| 6–7 | Optional experimental upload-to-classify demo and deployment | Not implemented |
+| 6 | Next.js/React frontend + private FastAPI model inference | Local implementation ready |
+| 7 | Secure deployment & privacy review | Not yet deployed |
+
+## Stage 6 — Experimental Next.js upload-to-classify website
+
+**New:** `web/` contains a Next.js 16 / React 19 frontend and `api/` contains a
+FastAPI inference service using the **exact frozen C08 preprocessing**. A user
+with permission to use a JPEG/PNG can select it locally and, when the private
+C08 checkpoint is configured, explore non-diagnostic class scores. The website
+never substitutes fabricated scores if the model is offline.
+
+**To run locally:** follow [STAGE6_QUICKSTART.md](STAGE6_QUICKSTART.md). For
+architecture and deployment/privacy limitations, see
+[docs/STAGE6_WEBAPP.md](docs/STAGE6_WEBAPP.md).
+
+The private C08 `.keras` checkpoint is **not** in this GitHub repository.
+Public deployment is intentionally deferred until security, privacy and model
+limitations have been reviewed. The original **92.16% final-test accuracy**
+remains the locked historical evaluation — this website does not produce new
+test-set claims.
 
 ## Repository contents
 
@@ -107,3 +126,23 @@ This prints experimental class scores and a **non-diagnostic** label. The CLI do
 Review every file before making this repository public. `.gitignore` excludes raw X-rays, checkpoint formats, private manifests, local logs, and other artifacts, but **Git ignore rules cannot protect files explicitly force-added**. Do not commit patient data, protected health information, Google Drive exports, private IDs or model weights. Licensing and rights to images/weights have not been established; no dataset or model-weights license is granted here.
 
 See [`docs/PRIVACY_CHECKLIST.md`](docs/PRIVACY_CHECKLIST.md). Source-code licensing can be chosen by the repository owner before public release.
+
+
+## Stage 7 — Public website deployment
+
+The **SpineLab** Next.js 16 / React 19 frontend is under [`web/`](web/).
+The FastAPI / TensorFlow C08 inference service is under [`api/`](api/).
+
+Deploy the frontend on **Vercel** with **Root Directory = `web`**.
+Deploy the Python API on **Railway** using the root `Dockerfile`, with
+its original locked `.keras` checkpoint stored on a **private Railway volume**.
+The model and patient images must **never** be committed to GitHub or baked into
+public container images. The Next.js server-side route forwards image bytes with
+a private bearer token; only the Next.js host receives public browser uploads.
+
+Detailed steps, security requirements and commands:
+[**Stage 7 deployment guide**](docs/STAGE7_DEPLOY.md).
+
+**Publication status:** Source code prepared for deployment. A live URL must be
+added after a successful provider deployment; this repository alone does not
+create or host a public site. The application is a non-diagnostic educational demo.
